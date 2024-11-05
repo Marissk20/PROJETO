@@ -1,0 +1,30 @@
+export interface RequestBoletoModel {
+  CedenteContaNumero: string
+  CedenteContaNumeroDV: string
+  CedenteConvenioNumero: string
+  CedenteContaCodigoBanco: string
+  SacadoCPFCNPJ: string
+  SacadoEnderecoNumero: string
+  SacadoEnderecoBairro: string
+  SacadoEnderecoCEP: string
+  SacadoEnderecoCidade: string
+  SacadoEnderecocomplemento: string
+  SacadoEnderecoLogradouro: string
+  SacadoEnderecoPais: string
+  SacadoEnderecoUF: string
+  SacadoNome: string
+  sacadoTelefone: string
+  SacadoCelular: boolean
+  TituloDataEmissao: string
+  TituloDataVencimento: string
+  TituloMensagem01: string
+  TituloMensagem02: string
+  TituloMensagem03: string
+  TituloNumeroDocumento: string
+  TituloDocEspecie: string
+  TituloNossoNumero: number
+  Titulovalor: string
+  titulosacadoravalistaenderecoNumero: string
+  TituloLocalPagamento: string
+  TituloSacadorAvalistaBairro: string
+}
