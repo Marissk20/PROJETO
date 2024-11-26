@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento Bancário</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" rel="stylesheet">
+    <style>
+        /* Estilos globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1A2B2D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #FFFFFF;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            height: 100vh;
+            background-color: #203132;
+            border: 1px solid #1E2829;
+            padding: 20px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .chart-container {
+            background-color: #182223;
+            border: 1px solid #1E2829;
+            padding: 20px;
+            border-radius: 6px;
+            position: relative;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .x-axis-labels {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            color: #C0C0C0;
+            font-size: 12px;
+        }
+
+        #chart {
+            flex-grow: 1;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="logo tecnospeed.png" alt="TecnoSpeed Logo">
+            </div>
+            <div class="bank-selection">
+                <button>Banco do Brasil</button>
+                <button>Itaú</button>
+                <button>Sicob</button>
+                <button>Sicredi</button>
+                <button>Caixa</button>
+                <button>Santander</button>
+                <button>Banrisul</button>
+                <button>Inter</button>
+            </div>
+        </header>
+        <div class="chart-container">
+            <div class="x-axis-labels">
+                <span>07:00</span><span>08:00</span><span>09:00</span><span>10:00</span>
+                <span>11:00</span><span>12:00</span><span>13:00</span><span>14:00</span>
+                <span>15:00</span><span>16:00</span><span>17:00</span><span>18:00</span>
+                <span>19:00</span><span>20:00</span>
+            </div>
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <script>
+        anychart.onDocumentReady(function () {
+            // Create a data set
+            var dataSet = anychart.data.set(getData());
+
+            var firstSeriesData = dataSet.mapAs({ x: 0, value: 1 });
+            var secondSeriesData = dataSet.mapAs({ x: 0, value: 2 });
+            var thirdSeriesData = dataSet.mapAs({ x: 0, value: 3 });
+            var fourthSeriesData = dataSet.mapAs({ x: 0, value: 4 });
+
+            var chart = anychart.line();
+
+            chart.animation(true);
+            chart.title('Monitoramento Bancário');
+            chart.yAxis().title('Tempo de Resposta (s)');
+
+            var firstSeries = chart.line(firstSeriesData);
+            firstSeries.name('Consulta').stroke('3 #00CED1');
+
+            var secondSeries = chart.line(secondSeriesData);
+            secondSeries.name('Registro').stroke('3 #DC143C');
+
+            chart.legend().enabled(true);
+            chart.container('chart');
+            chart.draw();
+        });
+
+        function getData() {
+            return [
+                ['07:00', 1.5, 2.1, 3.3, 4.0],
+                ['08:00', 1.2, 1.8, 2.9, 3.8],
+                ['09:00', 1.0, 1.5, 2.7, 3.6],
+                ['10:00', 1.1, 1.7, 2.5, 3.5],
+                ['11:00', 0.9, 1.4, 2.3, 3.4],
+                ['12:00', 1.2, 1.6, 2.8, 3.7],
+                ['13:00', 1.3, 1.9, 3.1, 4.1],
+                ['14:00', 1.1, 1.5, 2.6, 3.5],
+                ['15:00', 1.4, 1.8, 3.0, 4.0],
+                ['16:00', 1.2, 1.6, 2.9, 3.8],
+                ['17:00', 1.0, 1.4, 2.5, 3.6],
+                ['18:00', 1.3, 1.9, 3.2, 4.1],
+                ['19:00', 1.4, 1.8, 3.1, 4.0],
+                ['20:00', 1.2, 1.6, 2.8, 3.7]
+            ];
+        }
+    </script>
+</body>
+</html>
